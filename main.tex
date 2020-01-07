@@ -172,7 +172,7 @@ The field-cage consists of aluminium rings supported by clear acrylic rings, wit
 The dimensions of the field-cage and cathode are shown in Figure~\ref{fig:schematic}.
 Alternating acrylic rings are split, to allow for the circulation of purified LAr within the TPC volume.
 Four square section PAI\footnote{Polyamide-imide} uprights support the cathode and field cage, with PEEK\footnote{Polyether ether ketone} screws fixing the pillars to the acrylic rings.
-The four PAI uprights connect to a PAI frame which supports the anode plane and the light readout Silicon PhotoMultipliers (SiPMs), see Figure~\ref{fig:v1per}. 
+The four PAI uprights connect to a PAI frame which supports the anode plane and a set of  Silicon PhotoMultipliers (SiPMs) for light readout, see Figure~\ref{fig:v1per}. 
 
 \begin{figure}[!ht]
 \centering
@@ -181,7 +181,7 @@ The four PAI uprights connect to a PAI frame which supports the anode plane and 
 \label{fig:schematic}
 \end{figure}
  
-The resistive divider consists of a chain of \SI{100}{\mega\ohm} Vishay Rox metal oxide resistors (ROX100100MFKEL). Each resistor is soldered to its neighbour, and fixed to the field cage at each joint with an M3 screw.   
+The resistive divider consists of a chain of \SI{100}{\mega\ohm} Vishay Rox metal oxide resistors\footnote{ROX100100MFKEL}. Each resistor is soldered to its neighbour, and fixed to the field cage at each joint with an M3 screw.   
 
 \begin{figure}[!ht]
 \centering
@@ -204,33 +204,33 @@ This coincidence is used in order to improve trigger purity.
 
 \subsection{Infrastructure}
 
-The pixel demonstration TPC is housed in a double-bath vacuum-insulated cryostat with the outer bath open to atmosphere.
-LAr is filtered first on filling through a pair of Oxysorb-Hydrosorb filters, and then recirculated through a single custom-made filter containing both activated copper and silica gel.
+The pixel demonstration TPC is housed in a double-bath vacuum-insulated cryostat with the outer bath open to atmosphere for cooling.
+The inner LAr is filtered first on filling through a pair of Oxysorb-Hydrosorb filters, and then recirculated through a single custom-made filter containing both activated copper and silica gel.
 The cryostat and filtering method were previously used for LAr purity measurements~\cite{purititty}, and High-Voltage (HV) breakdown studies~\cite{HVoriginal}.
-Based on these previous studies, an impurity concentration $\order{\SI{1}{ppb}}$ of oxygen-equivalent is estimated, which corresponds to a charge lifetime of \SI{290+-30}{\micro\second}.
+Based on these previous studies, an impurity concentration $\order{\SI{1}{ppb}}$ of oxygen-equivalent is estimated, which corresponds to a charge lifetime of \SI{290}{\micro\second}.
 
-The HV feedthrough remains unchanged from the breakdown studies; based on a PET-C polymer dielectric capable of conducting potentials as high as \SI{-130}{\kilo\volt}.
+The HV feedthrough remains unchanged from the breakdown studies; based on a PET-C polymer dielectric capable of withstanding potentials as high as \SI{-130}{\kilo\volt}.
 A low-pass filter was added between the power supply and feedthrough, which consists of an \SI{800}{\pico\farad} decoupling capacitor grounded between two \SI{100}{\mega\ohm} resistors connected in series, all of which is submerged in transformer oil.  
 
 Only the warm signal path of the Data Acquisition (DAQ) was altered from that described in~\cite{protoLASER}, to include differential signalling.
-An inverted waveform of the signal is put onto an additional conductor, and the difference is then taken between the two conductors.
+An inverted waveform of the signal is put onto an additional conductor, and the difference is then taken between the signals on the two conductors.
 Ground loops are avoided because the signal sink does not need connecting to the same ground as the signal source.
 Additionally, the completely symmetric signal path means inductive noise pick-up is equal on both conductors and therefore cancelled at the signal sink.
 
 \section{Data Analysis and Reconstruction} \label{sec:results}
 
-The primary purpose of the experimental set-up described above is to demonstrate the principle of 3D
-reconstruction utilising a pixelated charge readout within a LArTPC. Thus, in this section we focus on both
-the characterization of the signal to noise ratio and the basic 3D track reconstruction that is
-made directly possible by this technology. 
-Since the purpose of the noise measurement is to characterise only the pixel readout, and not the whole TPC, both drift field and focusing bias were switched off. 
-%For the same reason, the measured noise was compared to an expected signal as apposed to data.    
+The primary purpose of this experimental set-up described above is to demonstrate the principle of 3D reconstruction utilising a pixelated charge readout within a LArTPC. 
+Thus, in this section we focus on both the characterization of the signal to noise ratio and the basic 3D track reconstruction that is made directly possible by this technology.
+ 
+ 
+For reconstruction, the HV for the TPC was set to \SI{-63}{\kilo\volt}, which, after a voltage drop across the HV filter and resistors, corresponds to a \SI{1}{\kilo\volt\per\centi\meter} drift field. The inductive focusing grid was set to a bias of \SI{-300}{\volt}, at which transparency was observed. 
 
-The HV for the TPC was set to \SI{-63}{\kilo\volt}, which, after a voltage drop across the HV filter and resistors, corresponds to a \SI{1}{\kilo\volt\per\centi\meter} drift field. The inductive focusing grid was set to a bias of \SI{-300}{\volt}, at which transparency was observed. 
+For noise measurements, since the purpose of the noise measurement is to characterise only the pixel readout, and not the whole TPC, both drift field and focusing bias were switched off. 
+
 
 \subsection{Signal to noise ratio}
 
-To assess the Signal to Noise Ratio (SNR) dedicated noise data was taken employing a \SI{5}{\hertz} random trigger.
+To assess the Signal to Noise Ratio (SNR), dedicated noise data was taken employing a \SI{5}{\hertz} random trigger.
 For the \num{2000} recorded events, all pixel and ROI channels were combined respectively and filled into amplitude distribution histograms.
 The standard deviation of the two noise distributions was then calculated by fitting a Gaussian.
 This value was used to calculate the noise for pixel and ROI channels according to
