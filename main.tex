@@ -318,10 +318,10 @@ The effectiveness of the filtering can be seen in Figure~\ref{fig:filteredRawDat
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.49\textwidth]{event967_rawUnfilteredPixel}
-	\includegraphics[width=.49\textwidth]{event967_rawUnfilteredROI}
+	\includegraphics[viewport=0 0 550 290, clip, width=\textwidth]{event967_rawUnfilteredPixel}\\
+	\includegraphics[viewport=0 0 550 290, clip, width=\textwidth]{event967_rawUnfilteredROI}
 	\caption{Unfiltered raw data of a typical MIP event (the same event as in Figures~\ref{fig:unfilteredRawData}~through~\ref{fig:kalman}).
-		The left plot shows pixel data while the right plot shows ROI data.
+		The upper plot shows pixel data while the lower plot shows ROI data.
 		Note that the colour scale was adjusted to highlight the charge signals.
 		Therefore, most signal peaks are above/below the maximum/minimum of the colour scale.
 		The full range of a typical signal can be seen in Figure~\ref{fig:hitFinder}.}
@@ -330,10 +330,10 @@ The effectiveness of the filtering can be seen in Figure~\ref{fig:filteredRawDat
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=.49\textwidth]{event967_rawFilteredPixel}
-	\includegraphics[width=.49\textwidth]{event967_rawFilteredROI}
+	\includegraphics[viewport=0 0 550 290, clip, width=\textwidth]{event967_rawFilteredPixel}\\
+	\includegraphics[viewport=0 0 550 290, clip, width=\textwidth]{event967_rawFilteredROI}
 	\caption{Filtered data of a typical MIP event (the same event as in Figures~\ref{fig:unfilteredRawData}~through~\ref{fig:kalman}).
-		The left plot shows pixel data while the right plot shows ROI data.
+		The upper plot shows pixel data while the lower plot shows ROI data.
 		Note that the colour scale was adjusted to highlight the charge signals.
 		Therefore, most signal peaks are above/below the maximum/minimum of the colour scale.
 		The full range of a typical signal can be seen in Figure~\ref{fig:hitFinder}.}
@@ -355,8 +355,8 @@ The different thresholds employed and samples found by this process are illustra
 
 \begin{figure}[htb]
 	\centering
-	\includegraphics[width=\textwidth, page=1]{event967_pixel2_hit8}\\
-	\includegraphics[width=\textwidth, page=3]{event967_pixel2_hit8}
+	\includegraphics[viewport=0 0 550 290, clip, width=\textwidth, page=1]{event967_pixel2_hit8}\\
+	\includegraphics[viewport=0 0 550 290, clip, width=\textwidth, page=3]{event967_pixel2_hit8}
 	\caption{Pulse shapes of a single pixel (top) and ROI (bottom) hit of a typical MIP event (the same event as in Figures~\ref{fig:unfilteredRawData}~through~\ref{fig:kalman}).
 		Superimposed are the thresholds of the hit finder algorithm. Horizontal lines represent thresholds: solid are the minimum thresholds required to be crossed for a pulse to be detected, and dashed are the thresholds used to detect the pulse edges.
 		Vertical lines represent the corresponding detected peak/edge samples.
@@ -390,6 +390,7 @@ It should be noted that readout electronics capable of cold amplification and di
 	\includegraphics[viewport=600 0 1000 2000, clip, height=\textwidth, angle=90]{event967_pulses_a_pca} \\
 	\includegraphics[viewport=600 0 1000 2000, clip, height=\textwidth, angle=90]{event967_pulses_a_det}
 	\caption{Reconstructed 3D hits from the hit finder.
+		Axes are the same as in Figure~\ref{fig:kalman}.
 		The passing particle is most likely a cosmic $\mu$ entering from the left (the same event as in Figures~\ref{fig:unfilteredRawData}~through~\ref{fig:kalman}).
 		Drift direction is from right to left.
 		Pulse shape is encoded as thickness.
