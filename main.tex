@@ -445,8 +445,8 @@ It should be noted that this step will not be required if the ROI-multiplexing s
 		Axes are the same as in Figure~\ref{fig:kalman}.
 		The passing particle is most likely a cosmic $\mu$ entering from the left (the same event as in Figures~\ref{fig:unfilteredRawData} through~\ref{fig:hitFinder}, and~\ref{fig:kalman}).
 		Drift direction is from right to left.
-		Each hit is represented by a sphere of a radius proportional to the pulse height.
-		This results in a droplet shape because the radius decreases when the ionisation track moves towards a neighbouring pixel, depositing less charge on the current pixel over time.}
+		The shapes of the hits encode the shapes of the corresponding pixel pulses.
+		Each signal sample is represented by a sphere with its radius proportional to the signal amplitude, resulting in a drop shape.}
 	\label{fig:pca}
 \end{figure}
 
@@ -466,7 +466,7 @@ The resulting track is shown in Figure~\ref{fig:kalman}.
 		The TPC volume is shown in faint grey.
 		The passing particle is most likely a cosmic $\mu$ entering from the left (the same event as in Figures~\ref{fig:unfilteredRawData} through~\ref{fig:pca}).
 		Drift direction is from right to left.
-		The yellow points are the input to the Kalman filter, the accepted hits from the principal components analysis.
+		The yellow points are the input to the Kalman filter, the accepted 3D hits from the principal components analysis.
 		Blue is the output, a fitted track taking into account ionisation losses and multiple scattering in LAr.}
 	\label{fig:kalman}
 \end{figure}
