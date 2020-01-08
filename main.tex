@@ -247,7 +247,7 @@ Therefore, this channel was blinded for the SNR calculations.
 The resulting equivalent noise charge is \SI{1095}{\elementarycharge} for the pixel channels and \SI{982}{\elementarycharge} for the inductive ROI channels.
 
 The signal $S$ is often taken for a Minimum-Ionising Particle (MIP) as this is a typical low-amplitude signal interesting for neutrino physics.
-Correctly deriving the deposited charge from experimental data requires a calibrated reconstruction which was not available at the time of writing.
+Correctly deriving the deposited charge from experimental data requires a calibrated event reconstruction which was not available at the time of writing.
 Therefore, we estimated the MIP signal from theory assuming an energy loss of \SI{2.1}{\mega\electronvolt\per\centi\metre}~\cite{pdg}.
 This can be converted to charge loss using the energy required to produce one electron-ion pair: $W_{\m{i}} = \SI{23.6}{\electronvolt\per\elementarycharge}$~\cite{NobleGasDetectors}.
 Additionally, charge recombination, diffusion and attachment losses characterised by lifetime need to be taken into account.
@@ -299,8 +299,8 @@ These events were triggered by the light readout described in Section~\ref{sec:v
 The reconstruction procedure comprises five steps:
 \begin{enumerate}
 	\item Noise filtering
-	\item Hit finding
-	\item Hit matching
+	\item Pulse finding
+	\item 3D hit finding
 	\item Ambiguity rejection
 	\item Track fitting
 \end{enumerate}
@@ -308,7 +308,7 @@ The reconstruction procedure comprises five steps:
 These steps are explained in the following and depicted in Figures~\ref{fig:unfilteredRawData} through~\ref{fig:kalman}, all taken from the same MIP (cosmic muon) event.
 
 In the first step, a noise-filtering algorithm is applied to the raw data.
-As can be seen from Figure~\ref{fig:unfilteredRawData}, the noise is largely correlated across all the channels\footnote{Due to the much higher signal levels, the noise is barely visible on the pixel channels on the left.}.
+As can be seen from Figure~\ref{fig:unfilteredRawData}, the noise is largely correlated across all the channels\footnote{Due to the much higher signal levels, the noise is barely visible on the pixel channels in Figure~\ref{fig:unfilteredRawData_a}.}.
 This common-mode correlation can be exploited by the noise filter algorithm.
 The following is done separately for the all pixel and ROI channels of each event.
 Similarly to the SNR calculation, all samples are filled into an amplitude distribution histogram for each channel, and subsequently fitted with a Gaussian distribution.
@@ -355,7 +355,7 @@ The effectiveness of the filtering can be seen in Figure~\ref{fig:filteredRawDat
 		\label{fig:filteredRawData_b}
 	\end{subfigure}
 	\caption{Filtered data of a typical MIP event (the same event as in Figures~\ref{fig:unfilteredRawData}, and~\ref{fig:hitFinder} through~\ref{fig:kalman}).
-		Note that the colour scale was adjusted to highlight the charge signals.
+		Note that the colour scale was adjusted to highlight the charge signals (same scale as in Figure~\ref{fig:unfilteredRawData}).
 		Therefore, most signal peaks are above/below the maximum/minimum of the colour scale.
 		The full range of a typical signal can be seen in Figure~\ref{fig:hitFinder}.}
 	\label{fig:filteredRawData}
@@ -363,14 +363,14 @@ The effectiveness of the filtering can be seen in Figure~\ref{fig:filteredRawDat
 
 The second step applies a recursive pulse finding algorithm (pulse finder).
 The following is performed for each channel independently.
-Most thresholds employed by the pulse finder are, again, defined in terms of noise amplitude.
+Most thresholds employed by the pulse finder are, again, derived from noise levels.
 Therefore, noise mean and standard deviation are recalculated after noise filtering.
-A peak threshold is defined by multiplying the noise standard deviation by a variable scaling factor and adding the noise mean.
+A peak threshold is defined by multiplying the noise standard deviation by a tunable scaling factor and adding the noise mean.
 In the same fashion, an edge threshold lower than the peak threshold is defined to detect the leading and trailing edges of the pulse.
 Then, the sample with the highest amplitude is found.
 If it is below the peak threshold, the process stops and proceeds to the next channel.
-Otherwise, the pulse is scanned in positive and negative directions until it crosses respective edge thresholds.
-After this, the whole pulse is stored and deleted from the input data then the process starts over with finding the new maximum sample and checking it against the peak threshold.
+Otherwise, the pulse is scanned in positive and negative directions until it crosses the edge threshold.
+After this, the whole pulse is stored and deleted from the input data; then the process starts over with finding the new maximum sample and checking it against the peak threshold.
 For stability reasons, the peak threshold derived from the noise levels is compared against an absolute threshold and the higher of the two is applied.
 The search is extended to the negative half-pulse for the bipolar ROI pulses, including detection of zero crossing defined by the noise mean.
 The different thresholds employed and samples found by this process are illustrated in Figure~\ref{fig:hitFinder}.
@@ -380,43 +380,41 @@ The different thresholds employed and samples found by this process are illustra
 	\begin{subfigure}{\textwidth}
 		\centering
 		\includegraphics[viewport=0 0 550 290, clip, width=\textwidth, page=1]{event967_pixel2_hit8}\\
-		\caption{Pixel hit}
+		\caption{Pixel pulse}
 		\label{fig:hitFinder_a}
 	\end{subfigure}
 	\begin{subfigure}{\textwidth}
 		\centering
 		\includegraphics[viewport=0 0 550 290, clip, width=\textwidth, page=3]{event967_pixel2_hit8}
-		\caption{ROI hit}
+		\caption{ROI pulse}
 		\label{fig:hitFinder_b}
 	\end{subfigure}
 	\caption{Pulse shapes of a single hit of a typical MIP event (the same event as in Figures~\ref{fig:unfilteredRawData},~\ref{fig:filteredRawData},~\ref{fig:pca}, and~\ref{fig:kalman}).
-		Superimposed are the thresholds of the hit finder algorithm.
+		Superimposed are the thresholds of the pulse finding algorithm.
 		Horizontal lines represent thresholds: solid are the minimum thresholds required to be crossed for a pulse to be detected, and dashed are the thresholds used to detect the pulse edges.
 		Vertical lines represent the corresponding detected peak/edge samples.
 		Colour indicates a positive (green) or negative (red) pulse, or a zero crossing (yellow).
-		Note that the yellow zero-crossing is not exactly zero as it is defined by the mean of the noise.}
+		Note that the yellow zero-crossing threshold is not exactly zero as it is defined by the mean of the noise.}
 	\label{fig:hitFinder}
 \end{figure}
 
-Identified pulses are then combined into 3D hits by matching pixels pulses to ROI pulses.
-For this proof of concept, this is done rather primitively by matching any pulses coinciding in time.
+Identified pulses are then combined into 3D hits by matching every pixel pulse to any ROI pulses overlapping in time.
 In Figure~\ref{fig:hitFinder}, a pixel and ROI pulse are matched if their time slices, defined by the vertical dashed lines, overlap.
-This third step results in a rather high amount of ambiguities but assures that we do not miss any hits.
+If a pixel pulse is matched to multiple ROI pulses, an ambiguity occurs, i.e. multiple 3D hit candidates.
+The employed 3D hit finding results in a rather high amount of ambiguities, but minimises the number of missed hits.
 
-To resolve the ambiguities, a Principal Component Analysis (PCA) is applied to the 3D space points in a fourth step.
+To resolve the ambiguities, a Principal Component Analysis (PCA) is applied to the 3D hit candidates in a fourth step.
 This technique is well established and described in literature, e.g.~\cite{pca}.
-Therefore, we shall explain it only briefly here.
-The basic idea is to calculate three orthogonal eigenvectors of the 3D space point cloud.
-A graphic interpretation of these eigenvectors are the three axis of an ellipsoid fitted to the data points.
+The basic idea is to calculate three orthogonal eigenvectors of the 3D space point cloud, representing the three axes of an ellipsoid fitted to the data points.
 In case the points form a track, one of these eigenvectors will have a much higher eigenvalue than the other two.
 This eigenvector is taken as an estimate for the track direction.
-We resolve the ambiguities by selecting the one closest to the track estimate.
+We resolve the ambiguities by selecting the hit candidate closest to the track estimate.
 Furthermore, this procedure can be used to recursively reject outliers by forming a cylinder around the track estimate with a radius proportional to the second largest eigenvalue.
 All hits outside this cylinder are rejected.
-The procedure can be repeated by rerunning the PCA on the remaining points and performing another outlier rejection.
-In a later stage of reconstructing more complex events, this algorithm can potentially be used to cluster 3D space points in order to separate multiple tracks.
+To reject further outliers the PCA is rerun on the remaining points up to three times, or until either no new outliers are rejected, or \SI{40}{\percent} of the hit candidates have been rejected.
+In a later stage of reconstructing more complex events, this algorithm can potentially be used to cluster 3D hits in order to separate multiple tracks.
 The PCA ambiguity rejection is illustrated in Figure~\ref{fig:pca}.
-It should be noted that readout electronics capable of cold amplification and digitisation, would render this step redundant. 
+It should be noted that this step will not be required if the ROI-multiplexing scheme can be avoided, e.g. using cold electronics capable of digitising every single pixel in situ. 
 
 \begin{figure}[htb]
 	\centering
@@ -447,16 +445,17 @@ It should be noted that readout electronics capable of cold amplification and di
 		Axes are the same as in Figure~\ref{fig:kalman}.
 		The passing particle is most likely a cosmic $\mu$ entering from the left (the same event as in Figures~\ref{fig:unfilteredRawData} through~\ref{fig:hitFinder}, and~\ref{fig:kalman}).
 		Drift direction is from right to left.
-		Pulse shape is encoded as thickness.}
+		Each hit is represented by a sphere of a radius proportional to the pulse height.
+		This results in a droplet shape because the radius decreases when the ionisation track moves towards a neighbouring pixel, depositing less charge on the current pixel over time.}
 	\label{fig:pca}
 \end{figure}
 
 The final step consists of a Kalman filter for track identification.
 For this, we used the well-established GENFIT track fitting package~\cite{genfit1, genfit2}.
 Ionisation losses and multiple scattering are taken into account.
-The particle is assumed to be a minimum-ionising muon with an initial momentum of \SI{260}{\mega\electronvolt} in the direction of the track estimate from the PCA.
-We chose a recursive algorithm capable of dealing with outliers, a so-called \emph{deterministic annealing filter}.
-This works by assigning successively lower weights to outliers with each recursion step.
+While generally applicable to any particle type, as a proof of concept we assumed a minimum-ionising muon with an initial momentum of \SI{260}{\mega\electronvolt} in the direction of the track estimate from the PCA.
+To deal with potential outliers still remaining after the PCA, we chose a recursive algorithm, a so-called \emph{deterministic annealing filter}.
+It works by assigning successively lower weights to outliers with each recursion step.
 For more details we refer to the respective publications~\cite{genfit1, genfit2}.
 The resulting track is shown in Figure~\ref{fig:kalman}.
 
@@ -476,13 +475,13 @@ The resulting track is shown in Figure~\ref{fig:kalman}.
 
 In the near future, the Kalman filter will be capable of fitting the particle momentum and/or even particle type to the data.
 However, at the time of this writing, this was not implemented.
-In particular, the momentum stays roughly at the initial guess of \SI{260}{\mega\electronvolt}, assuming a minimum ionising muon in liquid argon.
+In particular, the momentum stays roughly at the initial guess of \SI{260}{\mega\electronvolt}.
 A potential explanation for this is that the resolution of our detector is too low to estimate momentum from multiple scattering.
 Another explanation might be the hit finder missing hits due to non-optimal tuning.
 Proper tuning of the reconstruction requires a full simulation chain of the detector which is not yet available.
 Using data to tune the reconstruction is prone to the introduction of circular biases.
 On the other hand, most of the difficulties emerge from the multiplexing ambiguities and their resolution.
-While the presented almost full 3D readout has already reduced the reconstruction complexity compared to a classical wire readout, an ambiguity-free readout will make reconstruction another big step easier by completely eliminating the need to resolve ambiguities.
+While the presented 3D readout already reduces the reconstruction complexity compared to a classical wire readout, an ambiguity-free readout will make reconstruction even easier by completely eliminating the need to resolve ambiguities.
 
 \clearpage
 
