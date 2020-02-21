@@ -1,0 +1,22 @@
+Changes made in response to reviewers.
+
+Rev1 specific comments: 
+
+Line3 and line 16: It is stated that the TPCs are slow detectors. I think that this statement is a bit misleading (especially in the abstract), since it gives the impression that the pixelated readout, beside fixing the problem with the ambiguities in event reconstruction, makes the TPC response faster.
+
+Line 53: It is true that the “ktc noise” is sufficiently known, but I think it could be useful to define the variables in the equation.
+
+Lines 71-72: “LARASIC4*s were designed for traditional wire readouts, which require fewer channels than a pixelated readout of equivalent dimensions”. This sentence is a bit obscure to me. I don’t think that the “traditional wire readout” is universally defined. In general terms, the dimensions depend on the pitch. It is possible to build a pixelated readout with a pitch size large enough to cover a surface larger than the one covered by a wire readout.
+
+Lines 78-96: I had to read three times this paragraph in order to understand the multiplexing scheme. Eventually I figure it out, but I wonder whether this description could be made clearer.  Part of the problem is probably given by Ref 21: this is an important reference, however I could not find it on web. In case it is not possible to provide a better reference, I think it can be helpful to add a figure to explain the multiplexing scheme.
+
+Rev2 specific comments:
+
+Though the noise of a pre-amplifier indeed increases with the capacitance of the detector connected to it, the scaling with sqrt(C) (line 53) is only part of the question, and usually the scaling is almost linear. The thermal noise is likely to be subdominant at these cryogenic temperatures. By the way, the equation of line 53 is not in reference [18]. It would be better to give the noise dependence on the capacity of the detector for the LARASIC4 pre-amplifier, if this information is available.
+
+The cutoff frequency of the high-pass filter is of the order of 0.1 kHz, which looks very low. Maybe the capacitor to ground in this filter not 10 nF, but rather 10 pF?
+
+The transition from Figure 8 to Figure 9 is rather obscure, justified by a mere reference [35,36].
+
+Responses
+Please keep format: Line numnber -- "Original text" -- "New text"  comment
