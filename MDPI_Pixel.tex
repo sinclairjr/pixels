@@ -569,12 +569,23 @@ It should be noted that this step will not be required if the ROI-multiplexing s
 \end{figure}
 
 The final step consists of a Kalman filter for track identification.
-For this, we used the well-established GENFIT track fitting package~\cite{genfit1, genfit2}.
-Ionisation losses and multiple scattering are taken into account.
-While generally applicable to any particle type, as a proof of concept we assumed a minimum-ionising muon with an initial momentum of \SI{260}{\mega\electronvolt} in the direction of the track estimate from the PCA.
+For this, we used the well-established GENFIT track fitting package~\cite{genfit1, genfit2, genfit3}.
+Initially we assume a state vector of a minimum-ionising muon with a momentum of \SI{260}{\mega\electronvolt} in the direction of the track estimate from the PCA in the previous step.
+The sign of the momentum is chosen such that the muon travels from the atmosphere towards Earth.
+Likewise, the fit is started from the 3D hit closest to the atmosphere.
+GENFIT then extrapolates the state vector towards the next 3D hit in direction Earth, taking into account ionisation and multiple Coulomb scattering in liquid argon.
+The new state vector is improved based on the residuals between the extrapolation and the measured 3D hit.
+Finally, the process is repeated by extrapolating the new state vector towards the next 3D hit.
+A full track estimate is available after reaching the last 3D hit.
+However, the track estimate can still be biased in case of an inferior initial guess.
+Therefore, the final state vector is propagated back in space time once again to improve the track estimate.
+To improve the estimate even further, the entire process is repeated until the track estimate converges (or a maximum number of iterations is reached).
+
+As a proof of concept we assumed a minimum-ionising muon.
+However, the Kalman filter technique is generally applicable to any particle type.
 To deal with potential outliers still remaining after the PCA, we chose a recursive algorithm, a so-called \emph{deterministic annealing filter}.
 It works by assigning successively lower weights to outliers with each recursion step.
-For more details we refer to the respective publications~\cite{genfit1, genfit2}.
+For more details we refer to the respective publications~\cite{genfit1, genfit2, genfit3}.
 The resulting track is shown in Figure~\ref{fig:kalman}.
 
 \begin{figure}[htb]
