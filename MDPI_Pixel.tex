@@ -197,8 +197,9 @@
 Since their evolution from gaseous TPCs~\cite{TPC,LArIonize,LArTPC}, the charge readout for Liquid Argon Time Projection Chambers (LArTPCs) has been achieved with two or more projective wire planes. 
 Projective wire readouts have been successfully demonstrated in a number of experiments~\cite{icarus,argonute,uboner}, however they introduce intrinsic ambiguities in event reconstruction~\cite{ambiguous}. 
 The ambiguities are due to reconstructing complex 3D shapes with a limited number of 2D projections, and are particularly problematic if tracks are aligned parallel to the wire plane, or multiple events overlap in drift direction.    
-LArTPCs are intrinsically slow detectors with a drift speed of \SI{2.1}{\milli\metre\per\micro\second} at \SI{1}{\kilo\volt\per\centi\metre}~\cite{protoLASER}, therefore LArTPCs with drift lengths of $\mathcal{O}\left(1\right)\,\SI{}{\metre}$ have readout windows of $\mathcal{O}\left(100\right)\,\SI{}{\micro\second}$. 
-LArTPCs deployed in neutrino beams with spills of $\mathcal{O}\left(10\right)\,\SI{}{\micro\second}$~\cite{numi, DUNE3} long will have multiple events pile-up in the same readout window, this is problematic for projective wire readouts.
+LArTPCs are intrinsically slow detectors with a drift speed of \SI{2.1}{\milli\metre\per\micro\second} at \SI{1}{\kilo\volt\per\centi\metre}~\cite{protoLASER}.
+Therefore, drift lengths of $\order{\SI{1}{\metre}}$ result in readout windows of $\order{\SI{500}{\micro\second}}$. 
+Deployments in neutrino beams with spills of $\order{\SI{10}{\micro\second}}$~\cite{numi, DUNE3} long will have multiple events pile-up in the same readout window, this is problematic for projective wire readouts.
 It is possible to increase drift fields beyond \SI{1}{\kilo\volt\per\centi\metre}\cite{breakdown_16, latex}, however it is both safer and simpler to overcome pile-up with a charge readout free from ambiguities. 
 For this reason, we have developed a novel approach based on a pixelated charge readout to exploit the full 3D potential of LArTPCs.
 
