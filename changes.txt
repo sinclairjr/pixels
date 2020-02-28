@@ -22,6 +22,36 @@ Responses
 Please keep format: Line numnber -- "Original text" -- "New text"  comment
 
 
+DG, Rev1, line 3
+old:
+Traditional charge readout technologies of single-phase Liquid Argon Time
+projection Chambers (LArTPCs) based on projective wire readout introduce
+intrinsic ambiguities in event reconstruction, combined with a slow detector
+response, these ambiguities have limited the performance of LArTPCs, until
+now.
+
+new:
+Traditional charge readout technologies of single-phase Liquid Argon Time
+projection Chambers (LArTPCs) based on projective wire readout introduce
+intrinsic ambiguities in event reconstruction.
+Combined with the slow response inherent in LArTPC detectors,
+reconstruction ambiguities have limited their performance, until now.
+
+
+DG, Rev1, line 16
+old:
+LArTPCs are also slow detectors with a drift speed of
+\SI{2.1}{\milli\metre\per\micro\second} at
+\SI{1}{\kilo\volt\per\centi\metre}~\cite{protoLASER}, making event pile-up a
+problem for projective wire readouts in high-multiplicity environments.
+
+new:
+LArTPCs are intrinsically slow detectors with a drift speed of
+\SI{2.1}{\milli\metre\per\micro\second} at
+\SI{1}{\kilo\volt\per\centi\metre}~\cite{protoLASER}, making event pile-up a
+problem for projective wire readouts in high-multiplicity environments.
+
+
 DG, Rev2, lines 51-53
 old:
 Vias were used for pixels instead of pads in order to minimise capacitance.
