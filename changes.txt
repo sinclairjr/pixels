@@ -102,3 +102,7 @@ The resulting track is shown in Figure~\ref{fig:kalman}.
 
 DG, bibliography
 added genfit3 reference
+
+
+DG, figure 2
+Added ADC label to address confusion of reviewer 2 on cut-off frequency.
