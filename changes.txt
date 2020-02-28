@@ -38,6 +38,16 @@ Combined with the slow response inherent in LArTPC detectors,
 reconstruction ambiguities have limited their performance, until now.
 
 
+DG, Rev2, lines 71-72
+old;
+LARASIC4*s were designed for traditional wire readouts, which require fewer
+channels than a pixelated readout of equivalent dimensions.
+
+new:
+LARASIC4*s were designed for traditional wire readouts, which require fewer
+channels than a pixelated readout of equivalent dimensions and pitch.
+
+
 DG, Rev1, line 16
 old:
 LArTPCs are also slow detectors with a drift speed of
