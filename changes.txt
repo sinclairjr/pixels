@@ -22,6 +22,23 @@ Responses
 Please keep format: Line numnber -- "Original text" -- "New text"  comment
 
 
+DG, Rev1, line 88-89
+Added figure 3.
+
+old:
+Optimising the number of ROIs allowed us to readout the 1008 physical pixels
+with only 64 DAQ channels (28 ROIs + 36 pixels).
+
+new:
+Figure~\ref{fig:mux} demonstrates how 16 physical pixels can be read out using
+only 8 DAQ channels.
+Optimising the number of ROIs allowed us to readout the 1008 physical pixels
+with only 64 DAQ channels (28 ROIs + 36 pixels).
+The non-square numbers are the result of geometrical constraints on our
+readout plane.
+
+
+
 DG, Rev1, line 3
 old:
 Traditional charge readout technologies of single-phase Liquid Argon Time
