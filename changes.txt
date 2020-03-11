@@ -54,4 +54,7 @@ Old:
 "The multiplexing scheme divides the pixels into a number of Regions Of Interest (ROIs), the following is taken from [23]."
 
 New:
-"As mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, each ROI is defined as the pixels contained within a single section of inductive focusing grid."
+"As mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, each ROI is defined as the pixels contained within a single section of inAs mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, where each ROI is defined as the pixels contained within a single section of inductive focusing grid. 
+The following is taken from Ref [23].
+All pixels at the same coordinate inside each of the ROIs are connected to the same DAQ channel, i.e. only one DAQ channel connects all the pixels in the top left corners of all ROIs, and so on.
+A simple example is shown in Figure 3, which demonstrates how 16 physical pixels can be read out using only 8 DAQ channels.ductive focusing grid."

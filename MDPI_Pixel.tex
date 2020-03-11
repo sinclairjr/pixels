@@ -206,7 +206,7 @@ For this reason, we have developed a novel approach based on a pixelated charge 
 Pixelated charge readout is not a new idea, it has been employed in gaseous TPCs since the early 2000's~\cite{gaspix}. 
 However, gaseous TPCs are less sensitive to power dissipation from readout electronics than single-phase LArTPCs\footnote{Charge readout in dual-phase LArTPCs is not constrained by power dissipation, so they are able to exploit more advanced schemes~\cite{Far_Detectors}.}. 
 It is only relatively recently that cold readout electronics became available for LArTPCs~\cite{larasic}, with cold preamplifiers designed specifically for wire readouts.  
-Existing wire readout electronics however cannot be applied to such a scheme due to the increase in channel number.  
+However, existing wire readout electronics cannot be applied to such a scheme due to the increase in channel number.  
 Ideally, the charge collected at every pixel would be amplified and digitised individually.
 To make use of existing cold wire readout electronics for the measurements described here, a form of analogue multiplexing had to be employed.
 The multiplexing scheme essentially divides the pixel plane into a number of Regions Of Interest(ROIs), where pixels in different ROIs can share the same channel.   
@@ -284,19 +284,19 @@ Therefore, analogue multiplexing had to be used to minimise the channel numbers,
 	\label{fig:mux}
 \end{figure}
 
-As mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, each ROI is defined as the pixels contained within a single section of inductive focusing grid. 
-The following is taken from~\cite{maplesyrup}.
-All pixels at the same coordinate inside each of the ROIs are connected to the same DAQ channel, i.e. only one DAQ channel connects all the pixels in the top left corners of all ROIs, and so on. 
-For a general expression of the multiplexing scheme, a pixel plane of $N \times N$ pixels (where $N = n ^ 2$ and $n$ integer) is divided into $n \times n$~ROIs, each ROI containing, again, $n \times n = N$ pixels.
+As mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, where each ROI is defined as the pixels contained within a single section of inductive focusing grid. 
+The following is taken from Ref~\cite{maplesyrup}.
+All pixels at the same coordinate inside each of the ROIs are connected to the same DAQ channel, i.e. only one DAQ channel connects all the pixels in the top left corners of all ROIs, and so on.
+A simple example is shown in Figure~\ref{fig:mux}, which demonstrates how 16 physical pixels can be read out using only 8 DAQ channels. 
+For an optimal expression of the multiplexing scheme, a pixel plane of $N \times N$ pixels (where $N = n ^ 2$ and $n$ integer) is divided into $n \times n$~ROIs, each ROI containing, again, $n \times n = N$ pixels.
 Reading out such a plane requires $N$ DAQ channels for the ROIs plus another $N$ channels for the pixels.
 With the employed multiplexing scheme, only as many pixel channels as there are pixels per ROI are required, due to the fact that all pixels at the same relative position across all ROIs share a common DAQ channel.
 This means that an $N \times N$ pixel plane requires only $2 N$ DAQ channels; the same as a conventional 2-plane wire readout of the same pitch, and dimension.
-Figure~\ref{fig:mux} demonstrates how 16 physical pixels can be read out using only 8 DAQ channels.
 Optimising the number of ROIs allowed us to readout the 1008 physical pixels with only 64 DAQ channels (28 ROIs + 36 pixels).
 The non-square numbers are the result of geometrical constraints on our readout plane.
 
 Pixel signals are then associated to an induction signal on the ROI grid as follows. 
-If there is a signal on a certain pixel DAQ channel, the position inside the ROI is known but not which ROI.
+If there is a signal on a certain pixel DAQ channel, the position inside the ROI is known, but not which ROI th hit occurred in.
 By combining the inductive bipolar pulse on the ROI grid with any simultaneous collection pulses from the pixels, it is possible to disentangle the true position.
 Again, the drawback of this approach is that it is not free from ambiguities; it fails for multiple simultaneous hits when it is impossible to say which pixel pulse belongs to which ROI pulse.
 Ambiguous hits are flagged as pixel signals corresponding to multiple ROI signals, which can be disentangled later using reconstruction tools. 
