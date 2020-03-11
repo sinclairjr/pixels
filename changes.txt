@@ -46,3 +46,12 @@ Old:
 New:
 "Circuit diagram for pixels and inductive focusing grids that form the Regions Of Interest (ROIs). Pixels are directly coupled to the preamplifiers. ROIs are coupled to the preamplifiers via a \SI{10}{\nano\farad} capacitor, and are connected to the bias voltage via a \SI{10}{\mega\ohm} resistor and a low-pass RC filter used to remove AC ripples from the DC bias. The filter consists of another \SI{10}{\mega\ohm} resistor and a \SI{10}{\nano\farad} capacitor to ground"
 
+JS Fig3 -- added label to ROI and Pixel DAQ channels
+
+JS Line 84 -- reitterated the ROI definition
+
+Old:
+"The multiplexing scheme divides the pixels into a number of Regions Of Interest (ROIs), the following is taken from [23]."
+
+New:
+"As mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, each ROI is defined as the pixels contained within a single section of inductive focusing grid."

@@ -284,8 +284,8 @@ Therefore, analogue multiplexing had to be used to minimise the channel numbers,
 	\label{fig:mux}
 \end{figure}
 
-The multiplexing scheme divides the pixels into a number of Regions Of Interest (ROIs), the following is taken from~\cite{maplesyrup}.
-Each ROI is defined as the pixels contained within a single inductive focusing grid.
+As mentioned, the multiplexing scheme divides the pixel plane into a number of ROIs, each ROI is defined as the pixels contained within a single section of inductive focusing grid. 
+The following is taken from~\cite{maplesyrup}.
 All pixels at the same coordinate inside each of the ROIs are connected to the same DAQ channel, i.e. only one DAQ channel connects all the pixels in the top left corners of all ROIs, and so on. 
 For a general expression of the multiplexing scheme, a pixel plane of $N \times N$ pixels (where $N = n ^ 2$ and $n$ integer) is divided into $n \times n$~ROIs, each ROI containing, again, $n \times n = N$ pixels.
 Reading out such a plane requires $N$ DAQ channels for the ROIs plus another $N$ channels for the pixels.
