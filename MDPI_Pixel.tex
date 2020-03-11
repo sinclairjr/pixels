@@ -209,7 +209,7 @@ It is only relatively recently that cold readout electronics became available fo
 However, existing wire readout electronics cannot be applied to such a scheme due to the increase in channel number.  
 Ideally, the charge collected at every pixel would be amplified and digitised individually.
 To make use of existing cold wire readout electronics for the measurements described here, a form of analogue multiplexing had to be employed.
-The multiplexing scheme essentially divides the pixel plane into a number of Regions Of Interest(ROIs), where pixels in different ROIs can share the same channel.   
+The multiplexing scheme divides the pixel plane into a number of Regions Of Interest(ROIs), where pixels in different ROIs can share the same channel.   
 While not ideal, this allowed for the proof of principle of a pixelated charge readout in a single-phase LArTPC.   
 Bespoke pixel readout electronics are being developed~\cite{larpix} as a result of our work.
 
@@ -265,6 +265,8 @@ The RC filter consists of another \SI{10}{\mega\ohm} resistor and a \SI{10}{\nan
 \end{figure}
 
 The bias on the inductive focusing grids had to be sufficient to allow full charge transparency (all charge collected by the pixels), yet low enough to minimise any risk of damaging the cold coupling capacitors.
+We took measurements with bias voltages varying from \SIrange{0}{300}{\volt} DC.
+Optimal results were achieved at \SI{250}{\volt}.
 
 \subsection{Readout Scheme}
 
@@ -296,7 +298,7 @@ Optimising the number of ROIs allowed us to readout the 1008 physical pixels wit
 The non-square numbers are the result of geometrical constraints on our readout plane.
 
 Pixel signals are then associated to an induction signal on the ROI grid as follows. 
-If there is a signal on a certain pixel DAQ channel, the position inside the ROI is known, but not which ROI th hit occurred in.
+If there is a signal on a certain pixel DAQ channel, the position inside the ROI is known, but not which ROI the hit occurred in.
 By combining the inductive bipolar pulse on the ROI grid with any simultaneous collection pulses from the pixels, it is possible to disentangle the true position.
 Again, the drawback of this approach is that it is not free from ambiguities; it fails for multiple simultaneous hits when it is impossible to say which pixel pulse belongs to which ROI pulse.
 Ambiguous hits are flagged as pixel signals corresponding to multiple ROI signals, which can be disentangled later using reconstruction tools. 

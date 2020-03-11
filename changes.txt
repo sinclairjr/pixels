@@ -18,7 +18,7 @@ Old:
 
 New:
 "To make use of existing cold wire readout electronics for the measurements described here, a form of analogue multiplexing had to be employed.
-The multiplexing scheme essentially divides the pixel plane into a number of Regions Of Interest(ROIs), where pixels in different ROIs can share the same channel."
+The multiplexing scheme divides the pixel plane into a number of Regions Of Interest(ROIs), where pixels in different ROIs can share the same channel."
 
 JS Line54 -- added comment on physical definition of ROI.
 
@@ -58,3 +58,18 @@ New:
 The following is taken from Ref [23].
 All pixels at the same coordinate inside each of the ROIs are connected to the same DAQ channel, i.e. only one DAQ channel connects all the pixels in the top left corners of all ROIs, and so on.
 A simple example is shown in Figure 3, which demonstrates how 16 physical pixels can be read out using only 8 DAQ channels.ductive focusing grid."
+
+
+DG Lines 68-70 -- added bias voltage numbers
+old:
+The bias on the inductive focusing grids had to be sufficient to allow full
+charge transparency (all charge collected by the pixels), yet low enough to
+minimise any risk of damaging the cold coupling capacitors.
+new:
+The bias on the inductive focusing grids had to be sufficient to allow full
+charge transparency (all charge collected by the pixels), yet low enough to
+minimise any risk of damaging the cold coupling capacitors.
+We took measurements with bias voltages varying from \SIrange{0}{300}{\volt}
+DC.
+Optimal results were achieved at \SI{250}{\volt}.
+
