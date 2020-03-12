@@ -65,6 +65,7 @@ old:
 The bias on the inductive focusing grids had to be sufficient to allow full
 charge transparency (all charge collected by the pixels), yet low enough to
 minimise any risk of damaging the cold coupling capacitors.
+
 new:
 The bias on the inductive focusing grids had to be sufficient to allow full
 charge transparency (all charge collected by the pixels), yet low enough to
